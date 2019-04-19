@@ -1,0 +1,17 @@
+# Description
+# ===========
+# This playbook will delete an Azure VM 
+
+- name: Delete Azure VM
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group: "{{ resource_group_name }}"
+    vm_name: testvm
+    location: eastus
+  tasks:
+  - name: delete all auto create resource
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      state: absent
